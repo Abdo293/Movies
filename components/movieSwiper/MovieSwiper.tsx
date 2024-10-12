@@ -1,4 +1,3 @@
-// components/MovieSwiperSection.tsx
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
@@ -7,12 +6,22 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/navigation";
 import "swiper/css";
 import { ArrowSwiper } from "../home/upcoming/ArrowSwiper";
+import { Swiper as SwiperInstance } from "swiper"; // استيراد نوع SwiperInstance
+
+// تعريف نوع Movie
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+}
 
 interface MovieSwiperSectionProps {
   sectionName: string;
   nickname: string;
-  movies: any[];
-  swiperRef: React.MutableRefObject<any>;
+  movies: Movie[]; // تحديد نوع movies بدلاً من any
+  swiperRef: React.MutableRefObject<SwiperInstance | null>; // تحديد النوع SwiperInstance | null
 }
 
 const MovieSwiper: React.FC<MovieSwiperSectionProps> = ({

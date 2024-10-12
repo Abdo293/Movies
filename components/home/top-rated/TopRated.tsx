@@ -4,12 +4,13 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/navigation";
 import "swiper/css";
 import MovieSwiper from "@/components/movieSwiper/MovieSwiper";
+import { Swiper as SwiperInstance } from "swiper";
 
 export const TopRated = () => {
   const { topRatedMovies, loading, error, fetchTopRatedMovies } =
     useTMDbStore();
 
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperInstance | null>(null);
 
   useEffect(() => {
     if (topRatedMovies.length === 0) {

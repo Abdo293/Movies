@@ -46,8 +46,12 @@ const MovieDetails = () => {
         setMovie(response.data);
 
         setLoading(false);
-      } catch (error: any) {
-        setError(error.message);
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          setError(error.message);
+        } else {
+          setError("An unknown error occurred");
+        }
         setLoading(false);
       }
     };
@@ -56,7 +60,7 @@ const MovieDetails = () => {
   }, [id]);
 
   const { fetchPopularMovies, popularMovies } = useTMDbStore();
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetchPopularMovies();

@@ -1,10 +1,11 @@
 import MovieSwiper from "@/components/movieSwiper/MovieSwiper";
 import useTMDbStore from "@/store/store";
 import { useEffect, useRef } from "react";
+import { Swiper as SwiperInstance } from "swiper";
 
 export const BestSeries = () => {
   const { fetchPopularMovies, popularMovies, loading, error } = useTMDbStore();
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperInstance | null>(null);
 
   // Fetch popular movies when the component is mounted
   useEffect(() => {

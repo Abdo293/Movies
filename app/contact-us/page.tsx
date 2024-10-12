@@ -72,8 +72,8 @@ const Contact = () => {
                   <span className="text-[#fafafa] font-semibold">
                     Find solutions
                   </span>{" "}
-                  : to common problems, or get help from a support agent
-                  industry's standard .
+                  : to common problems or get help from a support agent
+                  industry&apos;s standard.
                 </p>
               </div>
 

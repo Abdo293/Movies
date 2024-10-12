@@ -3,10 +3,11 @@ import useTMDbStore from "@/store/store";
 import { useEffect, useRef } from "react";
 import "swiper/css";
 import MovieSwiper from "@/components/movieSwiper/MovieSwiper";
+import { Swiper as SwiperInstance } from "swiper";
 
 const Upcoming = () => {
   const { upcomingMovies, loading, error, fetchMovies } = useTMDbStore();
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperInstance | null>(null);
 
   useEffect(() => {
     if (upcomingMovies.length === 0) {

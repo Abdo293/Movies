@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Links } from "./Links";
 import { Button } from "@/components/ui/button";
@@ -13,19 +13,17 @@ import Link from "next/link";
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleScroll = useCallback(
-    debounce(() => {
-      setIsScrolled(window.scrollY > 150);
-    }, 100),
-    []
-  );
-
   useEffect(() => {
+    const handleScroll = debounce(() => {
+      setIsScrolled(window.scrollY > 150);
+    }, 100);
+
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll]);
+  }, []); // No dependencies needed here
 
   return (
     <motion.div
