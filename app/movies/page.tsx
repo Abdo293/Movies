@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react"; // استيراد Suspense
 import { fetchMovies } from "./allMovies";
 import { MovieCard } from "@/components/movie-card/MovieCard";
 import ReactPaginate from "react-paginate";
@@ -21,30 +21,27 @@ const Movies = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const router = useRouter(); // لإنشاء route جديد
-  const searchParams = useSearchParams(); // للوصول إلى الـ URL parameters
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // عند تحميل الصفحة، احصل على رقم الصفحة من الـ URL أو قم بتعيين الصفحة الأولى كافتراضي
   useEffect(() => {
-    const page = searchParams.get("page") || "1"; // احصل على رقم الصفحة من الـ URL أو رقم 1 كافتراضي
-    setCurrentPage(Number(page)); // قم بتعيين الصفحة الحالية
+    const page = searchParams.get("page") || "1";
+    setCurrentPage(Number(page));
   }, [searchParams]);
 
-  // جلب الأفلام استنادًا إلى رقم الصفحة
   useEffect(() => {
     const getMovies = async () => {
       const data = await fetchMovies(currentPage);
       setMovies(data.results);
-      setTotalPages(Math.min(data.total_pages, 500)); // حد أقصى للصفحات إلى 500
+      setTotalPages(Math.min(data.total_pages, 500));
     };
     getMovies();
   }, [currentPage]);
 
-  // تحديث الـ URL عند تغيير الصفحة
   const handlePageClick = (data: { selected: number }) => {
     const newPage = data.selected + 1;
     setCurrentPage(newPage);
-    router.push(`?page=${newPage}`); // تحديث الـ URL بالصفحة الجديدة
+    router.push(`?page=${newPage}`);
   };
 
   return (
@@ -107,4 +104,12 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+const MoviesPage = () => {
+  return (
+    <Suspense fallback={<div>loading...</div>}>
+      <Movies />
+    </Suspense>
+  );
+};
+
+export default MoviesPage;

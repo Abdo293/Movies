@@ -3,13 +3,13 @@ import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaShareAlt } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
-import { FaShareAlt } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { VscDebugStart } from "react-icons/vsc";
 import MovieSwiper from "@/components/movieSwiper/MovieSwiper";
 import useTMDbStore from "@/store/store";
+import { Swiper } from "swiper"; // استيراد Swiper
 
 // Define the structure for a movie detail
 interface MovieDetail {
@@ -44,14 +44,13 @@ const MovieDetails = () => {
           }
         );
         setMovie(response.data);
-
-        setLoading(false);
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           setError(error.message);
         } else {
           setError("An unknown error occurred");
         }
+      } finally {
         setLoading(false);
       }
     };
@@ -60,7 +59,7 @@ const MovieDetails = () => {
   }, [id]);
 
   const { fetchPopularMovies, popularMovies } = useTMDbStore();
-  const swiperRef = useRef<HTMLDivElement | null>(null);
+  const swiperRef = useRef<Swiper | null>(null); // تأكد من النوع هنا
 
   useEffect(() => {
     fetchPopularMovies();
@@ -97,13 +96,14 @@ const MovieDetails = () => {
               HD
             </p>
             <p className="text-sm font-medium text-white">
-              {movie.genres.map((e) => `${e.name}`).join(", ")}
+              {movie.genres.map((genre) => genre.name).join(", ")}
             </p>
             <p className="flex items-center gap-2 text-white text-sm font-medium">
-              <FaCalendarAlt className="text-mainColor" /> 2024
+              <FaCalendarAlt className="text-mainColor" />{" "}
+              {new Date(movie.release_date).getFullYear()}
             </p>
             <p className="flex items-center gap-2 text-white text-sm font-medium">
-              <IoMdTime className="text-mainColor" /> 128 min
+              <IoMdTime className="text-mainColor" /> {movie.runtime} min
             </p>
           </div>
 
