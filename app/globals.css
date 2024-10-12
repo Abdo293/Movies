@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+.home {
+  background-image: url("/banner_bg01.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.upcoming {
+  background-image: url("/ucm_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  color: white;
+  position: relative;
+  z-index: 5;
+  padding: 100px 0;
+}
+
+.upcoming .overlay-img {
+  background-image: url("/ucm_bg_shape.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.upcoming::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #100e17;
+  opacity: 0.95;
+  z-index: -1;
+}
+
+.services {
+  background-image: url("/services_bg.jpg");
+  padding: 100px 0;
+}
+.services .services-icon .icon {
+  position: relative;
+  z-index: 1; /* Ensure the icon is on top */
+}
+
+.services .services-icon .icon::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  z-index: -1;
+  transition: 0.3s linear;
+  opacity: 0;
+  background: #e4d804;
+}
+
+.services .services-icon:hover .icon::before {
+  opacity: 1;
+}
+
+.top-rated {
+  background-image: url("/tr_movies_bg.jpg");
+}
+
+.SecondService {
+  background-image: url("/live_bg.jpg");
+}
+
+.quality {
+  font-size: 60px;
+  text-shadow: 0px 3px 24px rgba(160, 160, 160, 0.09);
+  line-height: 1;
+  margin-bottom: 0;
+  color: #d81c2b;
+  font-weight: bold;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #d81c2b;
+}
+
+.BestSeries {
+  background-image: url("/tv_series_bg.jpg");
+}
+
+.form {
+  background-image: url("/newsletter_bg.jpg");
+}
+
+.inp-shadow {
+  box-shadow: 0px 3px 4px 0px rgba(30, 30, 30, 0.17);
+}
+
+.mid-sec {
+  background-image: url("/footer_bg.jpg");
+}
+
+.footer-links li {
+  border: none !important;
+}
+
+.links-img::before {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(18, 21, 30);
+  box-shadow: 0px 3px 0px 0px rgba(143, 143, 143, 0.14);
+}
+
+.last-sec {
+  background-color: #171b22;
+}
+
+.movie-details {
+  background-image: url("/movie_details_bg.jpg");
+  background-size: cover;
+}
+
+.films {
+  background-image: url("/tv_series_bg.jpg");
+  background-size: cover;
+}
+
+.movies {
+  background-image: url("/breadcrumb_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 60vh;
+  position: relative;
+  z-index: 1;
+}
+
+.movies::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #04081a;
+  background: -webkit-linear-gradient(to right, #04081a, transparent);
+  background: linear-gradient(to right, #04081a, transparent);
+  opacity: 0.66;
+  z-index: -1;
+}
+
+.movies .all-movies {
+  background-image: url("/movie_bg.jpg");
+}
+
+.pagination-item {
+  padding: 8px 16px;
+  border: 1px solid #bcbcbc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pagination-item:hover {
+  background-color: #e4d804;
+  color: black;
+}
+
+.active {
+  background-color: #e4d804;
+  color: black;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pricing {
+  background-image: url("/pricing_bg.jpg");
+  background-size: cover;
+}
+
+.blog {
+  background-image: url("/blog_bg.jpg");
+  background-size: cover;
+}
+
+.blog-txt::before {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 2px;
+  box-shadow: 0px 1px 3px 0px rgba(102, 102, 102, 0.46);
+}
+
+.head-line::before {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 20px;
+  width: 13%;
+  height: 3px;
+  background-color: #e4d804;
+  border-radius: 4px;
+}
+
+.blog-box-shadow {
+  box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.46);
+}
+
+.contact {
+  background-image: url("/contact_bg.jpg");
+  background-size: cover;
+}
+
+.input-box-shadow {
+  box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.46);
+}
+
+.contact .head-line::before {
+  left: 0;
+  width: 35%;
+}
+
+#map {
+  background-image: url("/map.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 440px;
+}
+
+@media (max-width: 767px) {
+  .pagination-item {
+    padding: 8px;
+  }
+}
